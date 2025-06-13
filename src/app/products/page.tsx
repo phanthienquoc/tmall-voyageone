@@ -7,7 +7,7 @@ export default function ProductPage() {
   const { products, selectedProduct, getProducts, loading } = useProductStore()
 
   useEffect(() => {
-    getProducts(["locondo_SH01_FKU_12060954"])
+    getProducts(["locondo-SH01-FKU1306-1059"])
   }, [])
 
   return (

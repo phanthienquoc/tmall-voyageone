@@ -1,38 +1,43 @@
 'use client'
-import {useState} from 'react'
+import { useState } from 'react'
 import React from 'react'
+import { useRouter } from 'next/navigation'
+import { Search } from 'lucide-react'
 
 type LayoutProps = React.PropsWithChildren<{}>;
 
-const Layout = ({children}: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <nav>
-      <ShopeeHeader/>
+        <ShopeeHeader />
       </nav>
       <div>
         {children}
       </div>
-    </div>                             
+    </div>
   )
 }
 
 export default Layout;
 
 
-
-import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
-
-  function ShopeeHeader() {
-  const [sku, setSku] = useState('')
-  const router = useRouter()
+function ShopeeHeader() {
+  const [sku, setSku] = useState('');
+  const router = useRouter();
 
   const handleSearch = () => {
     if (sku.trim()) {
-      router.push(`/products/${encodeURIComponent(sku.trim())}`)
+      router.push(`/products/${encodeURIComponent(sku.toString())}`);
     }
-  }
+  };
+
+  // Handle Enter key press to trigger the search
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(); // Trigger search when Enter is pressed
+    }
+  };
 
   return (
     <header className="bg-gradient-to-r from-[#f63] to-[#f53] text-white text-sm">
@@ -40,16 +45,17 @@ import { Search } from 'lucide-react'
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="text-2xl font-bold flex items-center gap-2">
-        
+          {/* Add your logo or other elements here */}
         </div>
 
         {/* Search box */}
         <div className="flex-1 mx-6 max-w-2xl relative bg-white rounded-sm">
           <input
             type="text"
-            placeholder="Shopee bao ship 0Đ - Đăng ký ngay!"
+            placeholder="Input SKU or Item Id to search"
             value={sku}
             onChange={(e) => setSku(e.target.value)}
+            onKeyDown={handleKeyDown} // Listen for Enter key press
             className="w-full p-2 pl-4 pr-12 rounded-sm text-black"
           />
           <button
@@ -62,8 +68,9 @@ import { Search } from 'lucide-react'
 
         {/* Cart */}
         <div className="text-white cursor-pointer">
+          {/* Add your cart or other elements here */}
         </div>
       </div>
     </header>
-  )
+  );
 }

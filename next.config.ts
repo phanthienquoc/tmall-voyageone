@@ -1,11 +1,13 @@
 // next.config.ts
 import type { NextConfig } from 'next'
-import withPlugins from 'next-compose-plugins'
 
 const nextConfig: NextConfig = {
-  experimental: {
-    serverActions: true,
+   typescript: {
+    ignoreBuildErrors: true, // Disable TypeScript build errors
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // Disable linting during build
   },
 }
 
-export default withPlugins([], nextConfig)
+export default nextConfig

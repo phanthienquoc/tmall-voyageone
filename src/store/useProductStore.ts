@@ -5,7 +5,7 @@ import { devtools } from 'zustand/middleware'
 interface Product {
   code: string
   name?: string
-  [key: string]: any
+  [key: string]: string | number | boolean | undefined
 }
 
 interface ProductStore {
@@ -47,6 +47,7 @@ export const useProductStore = create<ProductStore>()(
     },
 
     getProductDetail: async (code) => {
+      console.log('[useProductStore] Fetching product detail for getProductDetail:', code)
       set({ loading: true })
       try {
         const res = await fetch(`https://sandbox.voyageone.com/v2/restapi/product/market/info`, {
@@ -55,7 +56,7 @@ export const useProductStore = create<ProductStore>()(
             'Authorization': `Bearer ${process.env.NEXT_PUBLIC_VOYAGEONE_API_TOKEN}`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ code }),
+          body: JSON.stringify({ code: `${code}`}),
         })
 
         const data = await res.json()
