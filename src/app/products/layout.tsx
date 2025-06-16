@@ -3,6 +3,9 @@ import { useState } from 'react';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
+import Script from 'next/script';
+
+const GA_MEASUREMENT_ID = 'G-7T7R7P4008'; // Replace with your real ID
 
 type LayoutProps = React.PropsWithChildren<{}>;
 
@@ -38,6 +41,21 @@ function ShopeeHeader() {
 
   return (
     <header className="bg-gradient-to-r from-[#f63] to-[#f53] text-white text-sm">
+      {/* Google Analytics Tag */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+      </Script>
       {/* Middle bar */}
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
@@ -68,6 +86,7 @@ function ShopeeHeader() {
           {/* Add your cart or other elements here */}
         </div>
       </div>
+      <meta name="robots" content="index, follow" />
     </header>
   );
 }

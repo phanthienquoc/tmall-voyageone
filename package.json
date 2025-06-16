@@ -9,6 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",
+    "postbuild": "next-sitemap",
     "ping:sitemap": "ts-node scripts/ping-sitemap.ts"
   },
   "dependencies": {

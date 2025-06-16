@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tmall-voyageone-axxd.vercel.app/
+
+# Sitemaps
+Sitemap: https://tmall-voyageone-axxd.vercel.app/sitemap.xml
