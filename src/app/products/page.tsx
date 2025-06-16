@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import { useProductStore } from '@/store/useProductStore'
+import { useEffect } from 'react';
+import { useProductStore } from '@/store/useProductStore';
 
 export default function ProductPage() {
-  const { products, selectedProduct, getProducts, loading } = useProductStore()
+  const { products, selectedProduct, getProducts, loading } = useProductStore();
 
   useEffect(() => {
-    getProducts(["locondo-SH01-FKU1306-1059"])
-  }, [])
+    getProducts(['locondo-SH01-FKU1306-1059']);
+  }, []);
 
   return (
     <div className="p-4">
@@ -20,11 +20,7 @@ export default function ProductPage() {
             <a href={`/products/${product.code}`}>
               <p>{product.code}</p>
 
-              <button
-                className="text-blue-600"
-              >
-                View Detail
-              </button>
+              <button className="text-blue-600">View Detail</button>
             </a>
           </li>
         ))}
@@ -37,5 +33,5 @@ export default function ProductPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

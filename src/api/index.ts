@@ -1,9 +1,13 @@
-export const callApi = async (url: string, options: RequestInit = {}, method:string): Promise<any> => {
+export const callApi = async (
+  url: string,
+  options: RequestInit = {},
+  method: string
+): Promise<any> => {
   const response = await fetch(url, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
       ...options.headers,
     },
     method: method || 'GET',
@@ -15,4 +19,4 @@ export const callApi = async (url: string, options: RequestInit = {}, method:str
   }
 
   return response.json();
-}
+};

@@ -1,8 +1,8 @@
-'use client'
-import { useState } from 'react'
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
+'use client';
+import { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Search } from 'lucide-react';
 
 type LayoutProps = React.PropsWithChildren<{}>;
 
@@ -12,15 +12,12 @@ const Layout = ({ children }: LayoutProps) => {
       <nav>
         <ShopeeHeader />
       </nav>
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Layout;
-
 
 function ShopeeHeader() {
   const [sku, setSku] = useState('');
