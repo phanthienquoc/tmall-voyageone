@@ -4,23 +4,17 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 import Script from 'next/script';
+import Sidebar from '@/components/Sidebar';
 
-const GA_MEASUREMENT_ID = 'G-7T7R7P4008'; // Replace with your real ID
+const GA_MEASUREMENT_ID = 'G-7T7R7P4008';
 
-type LayoutProps = React.PropsWithChildren<{}>;
-
-const Layout = ({ children }: LayoutProps) => {
-  return (
-    <div>
-      <nav>
-        <ShopeeHeader />
-      </nav>
-      <div>{children}</div>
-    </div>
-  );
+type LayoutProps = {
+  children: React.ReactNode;
 };
 
-export default Layout;
+export default function ProductsLayout({ children }: { children: React.ReactNode }) {
+  return children;
+}
 
 function ShopeeHeader() {
   const [sku, setSku] = useState('');
@@ -32,15 +26,14 @@ function ShopeeHeader() {
     }
   };
 
-  // Handle Enter key press to trigger the search
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSearch(); // Trigger search when Enter is pressed
+      handleSearch();
     }
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#f63] to-[#f53] text-white text-sm">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#f63] to-[#f53] text-white text-sm shadow-md">
       {/* Google Analytics Tag */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -56,11 +49,10 @@ function ShopeeHeader() {
             });
           `}
       </Script>
-      {/* Middle bar */}
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <div className="text-2xl font-bold flex items-center gap-2">
-          {/* Add your logo or other elements here */}
+          <span className="hidden md:inline">Tmall Store</span>
         </div>
 
         {/* Search box */}
@@ -70,12 +62,12 @@ function ShopeeHeader() {
             placeholder="Input SKU or Item Id to search"
             value={sku}
             onChange={(e) => setSku(e.target.value)}
-            onKeyDown={handleKeyDown} // Listen for Enter key press
-            className="w-full p-2 pl-4 pr-12 rounded-sm text-black"
+            onKeyDown={handleKeyDown}
+            className="w-full p-2 pl-4 pr-12 rounded-sm text-black focus:outline-none focus:ring-2 focus:ring-[#f63]"
           />
           <button
             onClick={handleSearch}
-            className="absolute right-0 top-0 bottom-0 px-4 bg-white text-[#f63] rounded-sm"
+            className="absolute right-0 top-0 bottom-0 px-4 bg-white text-[#f63] rounded-sm hover:bg-gray-50 transition-colors"
           >
             <Search size={18} />
           </button>

@@ -28,8 +28,14 @@ export interface IProduct {
   attributes: string[] | null;
   customAttributes: CustomAttribute[];
   optAttributes: Record<string, string>[]; // assuming key-value objects
-  filingAttributes: Record<string, anstringy>[]; // assuming key-value objects
+  filingAttributes: Record<string, string>[]; // assuming key-value objects
   items: ProductItem[];
+  // Additional fields for display
+  name?: string;
+  price?: number;
+  salePrice?: number;
+  stock?: number;
+  rating?: number;
 }
 
 export interface CustomAttribute {

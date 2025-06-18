@@ -96,6 +96,7 @@ export async function generateMetadata({
         'max-snippet': -1,
       },
     },
+
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}/products/${product_id}`,

@@ -8,6 +8,17 @@ const nextConfig: NextConfig = {
   eslint: {
     // ignoreDuringBuilds: true, // Disable linting during build
   },
+  images: {
+    domains: ['img.alicdn.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.alicdn.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
